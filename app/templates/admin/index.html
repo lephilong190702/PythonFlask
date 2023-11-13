@@ -1,0 +1,23 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+{% if current_user.is_authenticated %}
+<h1 class="text-center text-info">TRANG QUẢN TRỊ HỆ THỐNG</h1>
+<h2>Chào {{ current_user.name }}</h2>
+{% else %}
+<h1 class="text-center text-info">ĐĂNG NHẬP QUẢN TRỊ</h1>
+<form action="/action_page.php">
+  <div class="mb-3 mt-3">
+    <label for="username" class="form-label">Tên đăng nhập:</label>
+    <input type="text" class="form-control" id="username" placeholder="Enter email" name="username">
+  </div>
+  <div class="mb-3">
+    <label for="username" class="form-label">Password:</label>
+    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endif %}
+
+
+{% endblock %}
