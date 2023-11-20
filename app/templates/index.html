@@ -19,11 +19,11 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Trang chủ</a>
+                    <a class="nav-link" href="/">Trang chủ</a>
                 </li>
                 {% for c in categories%}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{{ c.name }}</a>
+                    <a class="nav-link" href="/?cate_id={{c.id}}">{{ c.name }}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -36,6 +36,10 @@
 </nav>
 
 <section class="container">
+    <ul class="pagination mt-1">
+        <li class="page-item"><a class="page-link" href="/?page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="/?page=2">2</a></li>
+    </ul>
     <div class="row">
         {% for p in products %}
         <div class="col-xs-12 col-md-3" style="padding:7px; ">

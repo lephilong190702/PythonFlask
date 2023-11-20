@@ -6,7 +6,7 @@
 <h2>Chào {{ current_user.name }}</h2>
 {% else %}
 <h1 class="text-center text-info">ĐĂNG NHẬP QUẢN TRỊ</h1>
-<form action="/action_page.php">
+<form method="post" action="/admin/login">
   <div class="mb-3 mt-3">
     <label for="username" class="form-label">Tên đăng nhập:</label>
     <input type="text" class="form-control" id="username" placeholder="Enter email" name="username">
