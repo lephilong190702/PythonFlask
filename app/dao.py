@@ -34,3 +34,6 @@ def auth_user(username, password):
 
     return User.query.filter(User.username.__eq__(username),
                              User.password.__eq__(password)).first()
+
+def count_product():
+    return Product.query.count()

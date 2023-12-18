@@ -1,44 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Trang chủ</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-</head>
-<body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">WEBSITE BÁN HÀNG TRỰC TUYẾN</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Trang chủ</a>
-                </li>
-                {% for c in categories%}
-                <li class="nav-item">
-                    <a class="nav-link" href="/?cate_id={{c.id}}">{{ c.name }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            <form class="d-flex" method="get">
-                <input class="form-control me-2" type="text" name="kw" placeholder="Search">
-                <button class="btn btn-primary" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
+{% extends 'layout/base.html' %}
 
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
 <section class="container">
     <ul class="pagination mt-1">
-        <li class="page-item"><a class="page-link" href="/?page=1">1</a></li>
-        <li class="page-item"><a class="page-link" href="/?page=2">2</a></li>
+        {% for i in range(pages) %}
+        <li class="page-item"><a class="page-link" href="/?page={{ i + 1 }}">{{ i + 1 }}</a></li>
+        {% endfor %}
     </ul>
     <div class="row">
         {% for p in products %}
@@ -49,18 +18,11 @@
                     <h4 class="card-title">{{ p.name }}</h4>
                     <p class="card-text">{{ p.price }}</p>
                     <a href="#" class="btn btn-info">Xem chi tiết</a>
-                    <a href="#" class="btn btn-success">Đặt hàng</a>
+                    <a href="javascript:;" onclick="addToCart({{p.id}}, '{{p.name}}', {{p.price}})" class="btn btn-success">Đặt hàng</a>
                 </div>
             </div>
         </div>
         {% endfor%}
     </div>
 </section>
-<footer>
-    <div class="mt-4 p-5 bg-primary text-white rounded">
-        <h1>Le Phi Long</h1>
-        <p>2023</p>
-    </div>
-</footer>
-</body>
-</html>
+{% endblock %}
