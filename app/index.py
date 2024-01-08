@@ -65,6 +65,16 @@ def delete_cart(product_id):
     return jsonify(utils.count_cart(cart))
 
 
+@app.route("/api/pay", methods=['post'])
+def pay():
+    cart = session.get('cart')
+    if dao.add_receipt(cart):
+        del session['cart']
+        return jsonify({'status': 200})
+
+    return jsonify({'status': 500, 'err_msg': 'Something wrong!'})
+
+
 @app.route('/cart')
 def cart():
     return render_template('cart.html')

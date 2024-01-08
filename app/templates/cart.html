@@ -17,7 +17,7 @@
     <tr id="product{{ c.id }}">
         <td>{{ c.id }}</td>
         <td>{{ c.name }}</td>
-        <td>{{ c.price }}</td>
+        <td>{{ "{:,.0f}".format(c.price) }} VNĐ</td>
         <td>
             <input type="number" onblur="updateCart({{ c.id }}, this)" value="{{ c.quantity }}" class="form-control" />
         </td>
@@ -34,10 +34,14 @@
 </div>
 <div>
     {% if current_user.is_authenticated %}
-    <input type="button" value="Thanh toán" class="btn btn-success">
+    <input type="button" onclick="pay()" value="Thanh toán" class="btn btn-success">
     {% else %}
     <p>Vui lòng <a href="/login?next=/cart"> đăng nhập </a> để thanh toán !!</p>
     {% endif %}
 </div>
-{% endif%}
+{% else %}
+<div class="alert alert-info">
+    KHÔNG có sản phẩm trong giỏ!
+</div>
+{% endif %}
 {% endblock %}
